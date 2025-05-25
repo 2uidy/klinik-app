@@ -8,11 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-                <div>You're logged in!</div>
+                <div class="mb-4">Selamat Datang, {{ auth()->user()->name }}!</div>
 
                 @if (auth()->user()->role === 'perawat')
                     <a href="{{ route('pemeriksaan.create') }}"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                         Buat Pemeriksaan
                     </a>
                 @endif
@@ -26,11 +26,16 @@
 
                 @if (auth()->user()->role === 'dokter')
                     <a href="{{ route('diagnosa.index') }}"
-                    class="bg-purple-600 hover:bg-purple-800 text-white font-bold py-2 px-4 rounded mt-4 inline-block">
+                    class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                         Pemeriksaan Menunggu Diagnosa
                     </a>
                 @endif
 
+                @if (auth()->user()->role === 'apoteker')
+                    <div class="flex flex-wrap gap-3">
+                       Selamat Datang, {{ auth()->user()->name }}!<br>
+                    </div>
+                @endif
 
             </div>
         </div>

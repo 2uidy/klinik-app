@@ -46,10 +46,13 @@ class PasienController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pasien $pasien)
+    public function show($id)
     {
-        //
+        $pasien = Pasien::with(['pemeriksaans.resep.obats'])->findOrFail($id);
+
+        return view('pasien.show', compact('pasien'));
     }
+
 
     /**
      * Show the form for editing the specified resource.

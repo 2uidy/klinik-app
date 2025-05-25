@@ -16,9 +16,15 @@ class Pasien extends Model
         'no_hp',
     ];
 
-    public function pemeriksaan()
+    public function pemeriksaans()
     {
-        return $this->hasOne(Pemeriksaan::class);
+        return $this->hasMany(Pemeriksaan::class);
     }
+
+    public function reseps()
+    {
+        return $this->hasMany(Resep::class);
+    }
+
 
 }

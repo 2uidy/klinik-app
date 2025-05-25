@@ -22,4 +22,15 @@ class Pemeriksaan extends Model
         return $this->belongsTo(Pasien::class);
     }
 
+    public function resep()
+    {
+        return $this->hasOne(Resep::class);
+    }
+
+    public function obats()
+    {
+        return $this->hasMany(Obat::class);
+    }
+
+
 }

@@ -4,11 +4,15 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
+                <!-- Ganti bagian logo Laravel dengan ini -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                        <img src="{{ asset('images/logo_klinik.png') }}" 
+                            alt="Logo Klinik" 
+                            class="block h-9 w-auto">
                     </a>
                 </div>
+
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -16,6 +20,47 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @if (auth()->user()->role === 'pendaftaran')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('pasien.index')" :active="request()->routeIs('pasien.index')">
+                            {{ __('Daftar Pasien') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (auth()->user()->role === 'perawat')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('pemeriksaan.index')" :active="request()->routeIs('pemeriksaan.index')">
+                            {{ __('Daftar Hasil Pemeriksaan') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (auth()->user()->role === 'dokter')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('diagnosa.index')" :active="request()->routeIs('diagnosa.index')">
+                            {{ __('Daftar Hasil diagnosa') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (auth()->user()->role === 'apoteker')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('inputobat.index')" :active="request()->routeIs('inputobat.index')">
+                            {{ __('Input Obat') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
+                @if (auth()->user()->role === 'apoteker')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('reseps.index')" :active="request()->routeIs('reseps.index')">
+                            {{ __('Daftar Hasil reseps') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+
             </div>
 
             <!-- Settings Dropdown -->
